@@ -1,14 +1,15 @@
-import { getRefs } from '../js/refs';
-const { listEl, countryCardEl } = getRefs();
+import { refs } from "./refs";
 
-export function getMarkup(countries) {
-	countryCardEl.innerHTML = '';
-		const markup = countries
-   	.sort((a, b) => a.name.common.localeCompare(b.name.common))
-   	.map(
-      ({ flags, name }) =>
-      	`<li><img src="${flags.svg}" alt="Flag: ${name.official}" width="50"><p>${name.common}</p></li>`
-   )
-   .join('');
-	listEl.innerHTML = markup;
+export function listCountriesMarkup(countries) {
+
+   	const markupCountries = countries.map(country => {
+      	const { name, flags} = country;
+
+   	return`<li class="country-list__item">
+   		<img src="${flags.svg}" width="20" height="20" />
+   		<p class="country-list__name">${name.common}</p>
+   		</li>`
+   	}).join(' ');
+
+   	return refs.countryList.insertAdjacentHTML('beforeend', markupCountries);
 }

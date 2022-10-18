@@ -1,18 +1,20 @@
-import { getRefs } from '../js/refs';
-const { listEl, countryCardEl } = getRefs();
+import { refs } from "./refs";
 
-export function getCardMarkup(country) {
-	listEl.innerHTML = '';
-	const { flags, name, capital, population, languages } = country;
-	countryCardEl.innerHTML =
-   	/*html*/
-   	`<div class="card-box">
-      	<img src="${flags.svg}" alt="Flag: ${name.official}" width="50"/>
-      	<h2>${name.common}</h2>
-   	</div>
-   	<ul>
-      	<li><span>Capital: </span>${capital}</li>
-      	<li><span>Population: </span>${population}</li>
-      	<li><span>Languages: </span>${Object.values(languages).join(', ')}</li>
-   	</ul>`;
+export function infoCountryMarkup(country) {
+	const markupCountry = country.map(country => {
+		const { name, flags, capital, population, languages } = country;
+
+		const languagesOfCountry = Object.values(languages).join(' , ');
+		 
+		return`
+			<div class="country-info__container">
+			<img src="${flags.svg}" width="20" height="20" />
+			<p class="country-info__name"><b>${name.official}</b></p>
+			</div>
+			<p class="country-info__text"><b>Capital:</b> ${capital}</p>
+			<p class="country-info__text"><b>Population:</b> ${population}</p>
+			<p class="country-info__text"><b>languages:</b> ${languagesOfCountry}</p>`
+	}).join(' ');
+
+	return refs.countryInfo.insertAdjacentHTML('beforeend', markupCountry);
 }
