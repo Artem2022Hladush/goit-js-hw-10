@@ -4,8 +4,8 @@
   "description": "",
   "homepage": "https://Artem2022Hladush.github.io/goit-js-hw-10",
   "scripts": {
-    "dev": "parcel src/*.html",
-    "pro": "parcel build src/*.html --public-url /goit-j-hw-10/"
+    "start": "parcel src/*.html",
+    "build": "parcel build src/*.html --public-url /goit-j-hw-10/"
   },
   "repository": {
     "type": "git",
