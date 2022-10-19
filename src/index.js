@@ -42,4 +42,3 @@ function clearCountries() {
    refs.countryInfo.innerHTML = ' ';
 }
 
-// -------------
